@@ -40,6 +40,9 @@ class iscApp1:
  iscVzero = 0
  iscVone = 1
  iscVtwo = 2
+ iscVDeadMessage = "You are Dead!"
+ iscVhandShots = 0
+ iscVhandBrains = 0
  iscWindow4Window1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
  iscWindow4Window1Fixed = gtk.Fixed()
  iscWindow4Die10 = gtk.Image()
@@ -50,6 +53,10 @@ class iscApp1:
  iscWindow4die00 = gtk.Image()
  iscWindow4Label0 =gtk.Label("Hand")
  iscWindow4Test00 = gtk.Entry()
+ iscWindow4Score2 = gtk.Button("Score Hand")
+ iscWindow4Pass3 = gtk.Button("Pass")
+ iscWindow4Brains5 =gtk.Label("Brains")
+ iscWindow4Shots6 =gtk.Label("Shots")
 
  #EndOfGlobalVariables
 
@@ -76,119 +83,6 @@ def iscSetTextBox2():
 def iscSetTextBox3():
  thisiscApp1.iscWindow4Test00.set_text(thisiscApp1.iscVdie0text)
  #iscSetTextBox3Done
-
-
-def iscWindow4():
- thisiscApp1.iscWindow4Die10 = gtk.Image()
- thisiscApp1.iscWindow4Die20 = gtk.Image()
- thisiscApp1.iscWindow4Roll0 = gtk.Button("Roll")
- thisiscApp1.iscWindow4test10 = gtk.Entry()
- thisiscApp1.iscWindow4test20 = gtk.Entry()
- thisiscApp1.iscWindow4die00 = gtk.Image()
- thisiscApp1.iscWindow4Label0 =gtk.Label("Hand")
- thisiscApp1.iscWindow4Test00 = gtk.Entry()
- thisiscApp1.iscWindow4Window1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
- thisiscApp1.iscWindow4Window1Fixed = gtk.Fixed()
- thisiscApp1.iscWindow4Window1.set_title("Window")
- thisiscApp1.iscWindow4Window1.set_default_size(480, 640)
- thisiscApp1.iscWindow4Window1.add(thisiscApp1.iscWindow4Window1Fixed)
- thisiscApp1.iscWindow4Window1Fixed.width = 480
- thisiscApp1.iscWindow4Window1Fixed.height = 640
- thisiscApp1.iscWindow4Window1.connect("delete_event", iscWindow4Closed)
- thisiscApp1.iscWindow4Window1.set_resizable(False)
- thisiscApp1.iscWindow4Window1Fixed.show()
- iscWindow4Die10EventBox = gtk.EventBox()
- iscWindow4Die10EventBox.set_size_request(60, 60)
- iscWindow4Die10EventBox.connect("button_press_event", iscWindow4Die1Clicked)
- thisiscApp1.iscWindow4Die10.set_size_request(60, 60)
- iscWindow4Die10EventBox.add(thisiscApp1.iscWindow4Die10)
- thisiscApp1.iscWindow4Window1Fixed.put(iscWindow4Die10EventBox, 140, 150)
- thisiscApp1.iscWindow4Die10.show()
- iscWindow4Die10EventBox.show()
- iscWindow4Die20EventBox = gtk.EventBox()
- iscWindow4Die20EventBox.set_size_request(60, 60)
- iscWindow4Die20EventBox.connect("button_press_event", iscWindow4Die2Clicked)
- thisiscApp1.iscWindow4Die20.set_size_request(60, 60)
- iscWindow4Die20EventBox.add(thisiscApp1.iscWindow4Die20)
- thisiscApp1.iscWindow4Window1Fixed.put(iscWindow4Die20EventBox, 230, 150)
- thisiscApp1.iscWindow4Die20.show()
- iscWindow4Die20EventBox.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Roll0, 125, 280)
- thisiscApp1.iscWindow4Roll0.set_size_request(80, 26)
- thisiscApp1.iscWindow4Roll0.connect("clicked", iscWindow4RollClicked)
- thisiscApp1.iscWindow4Roll0.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4test10, 228, 249)
- thisiscApp1.iscWindow4test10.set_text("test box")
- thisiscApp1.iscWindow4test10.set_size_request(132, 27)
- thisiscApp1.iscWindow4test10.connect("changed", iscWindow4test1Changed)
- thisiscApp1.iscWindow4test10.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4test20, 231, 282)
- thisiscApp1.iscWindow4test20.set_text("TextBox")
- thisiscApp1.iscWindow4test20.set_size_request(132, 25)
- thisiscApp1.iscWindow4test20.connect("changed", iscWindow4test2Changed)
- thisiscApp1.iscWindow4test20.show()
- iscWindow4die00EventBox = gtk.EventBox()
- iscWindow4die00EventBox.set_size_request(60, 60)
- iscWindow4die00EventBox.connect("button_press_event", iscWindow4die0Clicked)
- thisiscApp1.iscWindow4die00.set_size_request(60, 60)
- iscWindow4die00EventBox.add(thisiscApp1.iscWindow4die00)
- thisiscApp1.iscWindow4Window1Fixed.put(iscWindow4die00EventBox, 50, 150)
- thisiscApp1.iscWindow4die00.show()
- iscWindow4die00EventBox.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Label0, 145, 119)
- thisiscApp1.iscWindow4Label0.set_size_request(45, 18)
- thisiscApp1.iscWindow4Label0.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Test00, 228, 219)
- thisiscApp1.iscWindow4Test00.set_text("Textbox0")
- thisiscApp1.iscWindow4Test00.set_size_request(130, 25)
- thisiscApp1.iscWindow4Test00.connect("changed", iscWindow4Test0Changed)
- thisiscApp1.iscWindow4Test00.show()
- thisiscApp1.iscWindow4Window1.show()
- iscinit_zdice34()
- #iscWindow4Opened
- #iscWindow4Done
-
-
-def iscWindow4Closed(self, other):
- pass
- iscAppQuit30()
- #iscWindow4Closed
-
-
-def iscWindow4Die1Clicked(widget, event):
- pass
- #iscWindow4Die1Clicked
-
-
-def iscWindow4Die2Clicked(widget, event):
- pass
- #iscWindow4Die2Clicked
-
-
-def iscWindow4RollClicked(self):
- pass
- iscRoll_Hand14()
- #iscWindow4RollClicked
-
-
-def iscWindow4test1Changed(self):
- pass
- #iscWindow4test1Changed
-
-
-def iscWindow4test2Changed(self):
- pass
- #iscWindow4test2Changed
-
-
-def iscWindow4die0Clicked(widget, event):
- pass
- #iscWindow4die0Clicked
-
-
-def iscWindow4Test0Changed(self):
- pass
- #iscWindow4Test0Changed
 
 
 def iscGetDiceText6():
@@ -218,11 +112,6 @@ def iscGetDiceText11():
  iscGetDiceText8()
  iscSetTextBox3()
  #iscGetDiceText11Done
-
-def iscPortalDeparture12():
- iscPortalDestination9()
- #iscPortalDeparture12Done
-
 
 def iscRoll_Hand14():
  thisiscApp1.iscVhand.roll()
@@ -692,6 +581,181 @@ def iscSetLabel77():
  thisiscApp1.iscWindow4Label0.set_label(thisiscApp1.iscVerror)
  #iscSetLabel77Done
 
+
+def iscPortalDeparture12():
+ iscPortalDestination9()
+ #iscPortalDeparture12Done
+
+
+def iscWindow4():
+ thisiscApp1.iscWindow4Die10 = gtk.Image()
+ thisiscApp1.iscWindow4Die20 = gtk.Image()
+ thisiscApp1.iscWindow4Roll0 = gtk.Button("Roll")
+ thisiscApp1.iscWindow4test10 = gtk.Entry()
+ thisiscApp1.iscWindow4test20 = gtk.Entry()
+ thisiscApp1.iscWindow4die00 = gtk.Image()
+ thisiscApp1.iscWindow4Label0 =gtk.Label("Hand")
+ thisiscApp1.iscWindow4Test00 = gtk.Entry()
+ thisiscApp1.iscWindow4Score2 = gtk.Button("Score Hand")
+ thisiscApp1.iscWindow4Pass3 = gtk.Button("Pass")
+ thisiscApp1.iscWindow4Brains5 =gtk.Label("Brains")
+ thisiscApp1.iscWindow4Shots6 =gtk.Label("Shots")
+ thisiscApp1.iscWindow4Window1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
+ thisiscApp1.iscWindow4Window1Fixed = gtk.Fixed()
+ thisiscApp1.iscWindow4Window1.set_title("Window")
+ thisiscApp1.iscWindow4Window1.set_default_size(480, 640)
+ thisiscApp1.iscWindow4Window1.add(thisiscApp1.iscWindow4Window1Fixed)
+ thisiscApp1.iscWindow4Window1Fixed.width = 480
+ thisiscApp1.iscWindow4Window1Fixed.height = 640
+ thisiscApp1.iscWindow4Window1.connect("delete_event", iscWindow4Closed)
+ thisiscApp1.iscWindow4Window1.set_resizable(False)
+ thisiscApp1.iscWindow4Window1Fixed.show()
+ iscWindow4Die10EventBox = gtk.EventBox()
+ iscWindow4Die10EventBox.set_size_request(60, 60)
+ iscWindow4Die10EventBox.connect("button_press_event", iscWindow4Die1Clicked)
+ thisiscApp1.iscWindow4Die10.set_size_request(60, 60)
+ iscWindow4Die10EventBox.add(thisiscApp1.iscWindow4Die10)
+ thisiscApp1.iscWindow4Window1Fixed.put(iscWindow4Die10EventBox, 140, 150)
+ thisiscApp1.iscWindow4Die10.show()
+ iscWindow4Die10EventBox.show()
+ iscWindow4Die20EventBox = gtk.EventBox()
+ iscWindow4Die20EventBox.set_size_request(60, 60)
+ iscWindow4Die20EventBox.connect("button_press_event", iscWindow4Die2Clicked)
+ thisiscApp1.iscWindow4Die20.set_size_request(60, 60)
+ iscWindow4Die20EventBox.add(thisiscApp1.iscWindow4Die20)
+ thisiscApp1.iscWindow4Window1Fixed.put(iscWindow4Die20EventBox, 230, 150)
+ thisiscApp1.iscWindow4Die20.show()
+ iscWindow4Die20EventBox.show()
+ thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Roll0, 29, 237)
+ thisiscApp1.iscWindow4Roll0.set_size_request(80, 26)
+ thisiscApp1.iscWindow4Roll0.connect("clicked", iscWindow4RollClicked)
+ thisiscApp1.iscWindow4Roll0.show()
+ thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4test10, 228, 249)
+ thisiscApp1.iscWindow4test10.set_text("test box")
+ thisiscApp1.iscWindow4test10.set_size_request(132, 27)
+ thisiscApp1.iscWindow4test10.connect("changed", iscWindow4test1Changed)
+ thisiscApp1.iscWindow4test10.show()
+ thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4test20, 231, 282)
+ thisiscApp1.iscWindow4test20.set_text("TextBox")
+ thisiscApp1.iscWindow4test20.set_size_request(132, 25)
+ thisiscApp1.iscWindow4test20.connect("changed", iscWindow4test2Changed)
+ thisiscApp1.iscWindow4test20.show()
+ iscWindow4die00EventBox = gtk.EventBox()
+ iscWindow4die00EventBox.set_size_request(60, 60)
+ iscWindow4die00EventBox.connect("button_press_event", iscWindow4die0Clicked)
+ thisiscApp1.iscWindow4die00.set_size_request(60, 60)
+ iscWindow4die00EventBox.add(thisiscApp1.iscWindow4die00)
+ thisiscApp1.iscWindow4Window1Fixed.put(iscWindow4die00EventBox, 50, 150)
+ thisiscApp1.iscWindow4die00.show()
+ iscWindow4die00EventBox.show()
+ thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Label0, 145, 120)
+ thisiscApp1.iscWindow4Label0.set_size_request(45, 18)
+ thisiscApp1.iscWindow4Label0.show()
+ thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Test00, 228, 219)
+ thisiscApp1.iscWindow4Test00.set_text("Textbox0")
+ thisiscApp1.iscWindow4Test00.set_size_request(130, 25)
+ thisiscApp1.iscWindow4Test00.connect("changed", iscWindow4Test0Changed)
+ thisiscApp1.iscWindow4Test00.show()
+ thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Score2, 30, 279)
+ thisiscApp1.iscWindow4Score2.set_size_request(80, 26)
+ thisiscApp1.iscWindow4Score2.connect("clicked", iscWindow4ScoreClicked)
+ thisiscApp1.iscWindow4Score2.show()
+ thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Pass3, 125, 239)
+ thisiscApp1.iscWindow4Pass3.set_size_request(80, 26)
+ thisiscApp1.iscWindow4Pass3.connect("clicked", iscWindow4PassClicked)
+ thisiscApp1.iscWindow4Pass3.show()
+ thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Brains5, 52, 120)
+ thisiscApp1.iscWindow4Brains5.set_size_request(55, 20)
+ thisiscApp1.iscWindow4Brains5.show()
+ thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Shots6, 233, 120)
+ thisiscApp1.iscWindow4Shots6.set_size_request(57, 18)
+ thisiscApp1.iscWindow4Shots6.show()
+ thisiscApp1.iscWindow4Window1.show()
+ iscinit_zdice34()
+ #iscWindow4Opened
+ #iscWindow4Done
+
+
+def iscWindow4Closed(self, other):
+ pass
+ iscAppQuit30()
+ #iscWindow4Closed
+
+
+def iscWindow4Die1Clicked(widget, event):
+ pass
+ #iscWindow4Die1Clicked
+
+
+def iscWindow4Die2Clicked(widget, event):
+ pass
+ #iscWindow4Die2Clicked
+
+
+def iscWindow4RollClicked(self):
+ pass
+ iscRoll_Hand14()
+ #iscWindow4RollClicked
+
+
+def iscWindow4test1Changed(self):
+ pass
+ #iscWindow4test1Changed
+
+
+def iscWindow4test2Changed(self):
+ pass
+ #iscWindow4test2Changed
+
+
+def iscWindow4die0Clicked(widget, event):
+ pass
+ #iscWindow4die0Clicked
+
+
+def iscWindow4Test0Changed(self):
+ pass
+ #iscWindow4Test0Changed
+
+
+def iscWindow4ScoreClicked(self):
+ pass
+ iscScoreHand96()
+ #iscWindow4ScoreClicked
+
+
+def iscWindow4PassClicked(self):
+ pass
+ #iscWindow4PassClicked
+
+
+def iscSetLabel97():
+ thisiscApp1.iscWindow4Label0.set_label(thisiscApp1.iscVDeadMessage)
+ #iscSetLabel97Done
+
+
+def iscSetLabel98():
+ thisiscApp1.iscWindow4Label0.set_label(thisiscApp1.iscVisGreenBrains)
+ iscPortalDeparture12()
+ #iscSetLabel98Done
+
+
+def iscScoreHand96():
+ if thisiscApp1.iscVhand.score():
+  iscgetHandShots129()
+  #iscScoreHand96Alive
+ else:
+  iscSetLabel97()
+  #iscScoreHand96Dead
+def iscgetHandShots129():
+ thisiscApp1.iscVhandShots=thisiscApp1.iscVhand.shots
+ iscgetHandBrains131()
+ #iscgetHandShots129Done
+
+def iscgetHandBrains131():
+ thisiscApp1.iscVhandBrains=thisiscApp1.iscVhand.brains
+ iscSetLabel98()
+ #iscgetHandBrains131Done
 
 #EndOfFunctions
 
