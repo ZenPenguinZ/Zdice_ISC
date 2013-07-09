@@ -8,6 +8,7 @@ import random
 import os
 import sys
 import gtk
+import logging
 from zdice import Die
 from zdice import Hand
 from zdice import Player
@@ -16,47 +17,60 @@ from zdice import Dice_Cup
 #EndImports
 
 class iscApp1:
- iscVerror = "Error!"
- iscVred = "red"
- iscVyellow = "yellow"
- iscVdie2 = "die2"
- iscVdie1 = "die1"
- iscVgreen = "green"
- iscVdie1text = ""
- iscVdie2text = ""
- iscVisGreenBrains = "Green brains"
- iscVisYellowbrains = "Yellow brains"
- iscVisRedbrains = "Red brains"
- iscVisGreenrun = "Green run"
- iscVisYellowrun = "Yellow run"
- iscVisYellowshot = "Yellow shot"
- iscVisRedrun = "Red run"
- iscVisGreenshot = "Green shot"
- iscVisRedshot = "Red shot"
- iscVDice_Cup = ""
- iscVPlayers_Group = ""
- iscVhand = ""
- iscVdie0text = ""
- iscVzero = 0
- iscVone = 1
- iscVtwo = 2
- iscVDeadMessage = "You are Dead!"
- iscVhandShots = 0
+ iscVempty_str = ""
+ iscVNumberPlayers = 0
+ iscVCurrentPlayer = ""
+ iscVtemp = ""
  iscVhandBrains = 0
- iscWindow4Window1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
- iscWindow4Window1Fixed = gtk.Fixed()
- iscWindow4Die10 = gtk.Image()
- iscWindow4Die20 = gtk.Image()
- iscWindow4Roll0 = gtk.Button("Roll")
- iscWindow4test10 = gtk.Entry()
- iscWindow4test20 = gtk.Entry()
- iscWindow4die00 = gtk.Image()
- iscWindow4Label0 =gtk.Label("Hand")
- iscWindow4Test00 = gtk.Entry()
- iscWindow4Score2 = gtk.Button("Score Hand")
- iscWindow4Pass3 = gtk.Button("Pass")
- iscWindow4Brains5 =gtk.Label("Brains")
- iscWindow4Shots6 =gtk.Label("Shots")
+ iscVhandShots = 0
+ iscVDeadMessage = "You are Dead!"
+ iscVtwo = 2
+ iscVone = 1
+ iscVzero = 0
+ iscVdie0text = ""
+ iscVhand = ""
+ iscVPlayers_Group = ""
+ iscVDice_Cup = ""
+ iscVisRedshot = "Red shot"
+ iscVisGreenshot = "Green shot"
+ iscVisRedrun = "Red run"
+ iscVisYellowshot = "Yellow shot"
+ iscVisYellowrun = "Yellow run"
+ iscVisGreenrun = "Green run"
+ iscVisRedbrains = "Red brains"
+ iscVisYellowbrains = "Yellow brains"
+ iscVisGreenBrains = "Green brains"
+ iscVdie2text = ""
+ iscVdie1text = ""
+ iscVgreen = "green"
+ iscVdie1 = "die1"
+ iscVdie2 = "die2"
+ iscVyellow = "yellow"
+ iscVred = "red"
+ iscVerror = "Error!"
+ iscWindow20Player1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
+ iscWindow20Player1Fixed = gtk.Fixed()
+ iscWindow20addPlayer0 = gtk.Button("Add")
+ iscWindow20done0 = gtk.Button("Done")
+ iscWindow20Plist0 = gtk.TextView(buffer=None)
+ iscWindow20Pname0 = gtk.TextView(buffer=None)
+ iscWindow20Label0 =gtk.Label("Enter your name")
+
+ iscWindow38Window1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
+ iscWindow38Window1Fixed = gtk.Fixed()
+ iscWindow38Die10 = gtk.Image()
+ iscWindow38Die20 = gtk.Image()
+ iscWindow38Roll0 = gtk.Button("Roll")
+ iscWindow38test10 = gtk.Entry()
+ iscWindow38test20 = gtk.Entry()
+ iscWindow38die00 = gtk.Image()
+ iscWindow38Label0 =gtk.Label("Hand")
+ iscWindow38Test00 = gtk.Entry()
+ iscWindow38Score0 = gtk.Button("Score Hand")
+ iscWindow38Pass0 = gtk.Button("Pass")
+ iscWindow38Brains0 =gtk.Label("Brains")
+ iscWindow38Shots0 =gtk.Label("Shots")
+ iscWindow38getdice0 = gtk.Button("get dice")
 
  #EndOfGlobalVariables
 
@@ -70,698 +84,849 @@ class iscApp1:
 
 #EndOfClass
 
-def iscSetTextBox1():
- thisiscApp1.iscWindow4test20.set_text(thisiscApp1.iscVdie2text)
- #iscSetTextBox1Done
+def iscSetLabel48():
+ thisiscApp1.iscWindow38Label0.set_label(thisiscApp1.iscVerror)
+ #iscSetLabel48Done
 
 
-def iscSetTextBox2():
- thisiscApp1.iscWindow4test10.set_text(thisiscApp1.iscVdie1text)
- #iscSetTextBox2Done
+def iscSetCanvasPicture96():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rfeet.jpg") #iscSetCanvasPicture96Done
 
 
-def iscSetTextBox3():
- thisiscApp1.iscWindow4Test00.set_text(thisiscApp1.iscVdie0text)
- #iscSetTextBox3Done
+def iscSetCanvasPicture94():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rshot.jpg") #iscSetCanvasPicture94Done
 
 
-def iscGetDiceText6():
- d = thisiscApp1.iscVhand.dice[thisiscApp1.iscVtwo]
- thisiscApp1.iscVdie2text = d.__repr__()
- iscIfThen35()
- iscSetTextBox1()
- #iscGetDiceText6Done
-
-def iscGetDiceText8():
- d = thisiscApp1.iscVhand.dice[thisiscApp1.iscVone]
- thisiscApp1.iscVdie1text = d.__repr__()
- iscIfThen22()
- iscGetDiceText6()
- iscSetTextBox2()
- #iscGetDiceText8Done
-
-def iscPortalDestination9():
- iscGetDiceText11()
- #iscPortalDestination9Arrived
+def iscSetCanvasPicture49():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rbrain.jpg") #iscSetCanvasPicture49Done
 
 
-def iscGetDiceText11():
- d = thisiscApp1.iscVhand.dice[thisiscApp1.iscVzero]
- thisiscApp1.iscVdie0text = d.__repr__()
- iscIfThen29()
- iscGetDiceText8()
- iscSetTextBox3()
- #iscGetDiceText11Done
+def iscSetCanvasPicture50():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yshot.jpg") #iscSetCanvasPicture50Done
 
-def iscRoll_Hand14():
- thisiscApp1.iscVhand.roll()
- iscPortalDeparture12()
- #iscRoll_Hand14Rolled
 
-def iscIfThen15():
+def iscSetCanvasPicture51():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yfeet.jpg") #iscSetCanvasPicture51Done
+
+
+def iscSetCanvasPicture52():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/ybrain.jpg") #iscSetCanvasPicture52Done
+
+
+def iscSetCanvasPicture53():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gshot.jpg") #iscSetCanvasPicture53Done
+
+
+def iscSetCanvasPicture54():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gfeet.jpg") #iscSetCanvasPicture54Done
+
+
+def iscSetCanvasPicture55():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gbrain.jpg") #iscSetCanvasPicture55Done
+
+
+def iscIfThen97():
  if thisiscApp1.iscVdie2text == thisiscApp1.iscVisRedrun:
-  iscSetCanvasPicture16()
-  #iscIfThen15True
+  iscSetCanvasPicture96()
+  #iscIfThen97True
 
   pass
  else:
-  iscSetLabel77()
-  #iscIfThen15False
+  iscSetLabel48()
+  #iscIfThen97False
 
   pass
 
-def iscSetCanvasPicture16():
- thisiscApp1.iscWindow4Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rfeet.jpg") #iscSetCanvasPicture16Done
+def iscIfThen95():
+ if thisiscApp1.iscVdie2text == thisiscApp1.iscVisRedshot:
+  iscSetCanvasPicture94()
+  #iscIfThen95True
 
+  pass
+ else:
+  iscIfThen97()
+  #iscIfThen95False
+
+  pass
+
+def iscIfThen57():
+ if thisiscApp1.iscVdie2text == thisiscApp1.iscVisRedbrains:
+  iscSetCanvasPicture49()
+  #iscIfThen57True
+
+  pass
+ else:
+  iscIfThen95()
+  #iscIfThen57False
+
+  pass
+
+def iscIfThen58():
+ if thisiscApp1.iscVdie2text == thisiscApp1.iscVisYellowshot:
+  iscSetCanvasPicture50()
+  #iscIfThen58True
+
+  pass
+ else:
+  iscIfThen57()
+  #iscIfThen58False
+
+  pass
+
+def iscIfThen59():
+ if thisiscApp1.iscVdie2text == thisiscApp1.iscVisYellowrun:
+  iscSetCanvasPicture51()
+  #iscIfThen59True
+
+  pass
+ else:
+  iscIfThen58()
+  #iscIfThen59False
+
+  pass
+
+def iscIfThen1():
+ if thisiscApp1.iscVdie2text == thisiscApp1.iscVisYellowbrains:
+  iscSetCanvasPicture52()
+  #iscIfThen1True
+
+  pass
+ else:
+  iscIfThen59()
+  #iscIfThen1False
+
+  pass
+
+def iscIfThen60():
+ if thisiscApp1.iscVdie2text == thisiscApp1.iscVisGreenshot:
+  iscSetCanvasPicture53()
+  #iscIfThen60True
+
+  pass
+ else:
+  iscIfThen1()
+  #iscIfThen60False
+
+  pass
+
+def iscIfThen56():
+ if thisiscApp1.iscVdie2text == thisiscApp1.iscVisGreenrun:
+  iscSetCanvasPicture54()
+  #iscIfThen56True
+
+  pass
+ else:
+  iscIfThen60()
+  #iscIfThen56False
+
+  pass
+
+def iscSetCanvasPicture61():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rshot.jpg") #iscSetCanvasPicture61Done
+
+
+def iscSetCanvasPicture62():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rfeet.jpg") #iscSetCanvasPicture62Done
+
+
+def iscSetCanvasPicture63():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rbrain.jpg") #iscSetCanvasPicture63Done
+
+
+def iscSetCanvasPicture64():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yshot.jpg") #iscSetCanvasPicture64Done
+
+
+def iscSetCanvasPicture65():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yfeet.jpg") #iscSetCanvasPicture65Done
+
+
+def iscSetCanvasPicture66():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/ybrain.jpg") #iscSetCanvasPicture66Done
+
+
+def iscSetCanvasPicture67():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gshot.jpg") #iscSetCanvasPicture67Done
+
+
+def iscSetCanvasPicture68():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gfeet.jpg") #iscSetCanvasPicture68Done
+
+
+def iscSetCanvasPicture69():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gbrain.jpg") #iscSetCanvasPicture69Done
+
+
+def iscIfThen70():
+ if thisiscApp1.iscVdie1text == thisiscApp1.iscVisRedshot:
+  iscSetCanvasPicture61()
+  #iscIfThen70True
+
+  pass
+ else:
+  iscSetLabel48()
+  #iscIfThen70False
+
+  pass
+
+def iscIfThen93():
+ if thisiscApp1.iscVdie1text == thisiscApp1.iscVisRedrun:
+  iscSetCanvasPicture62()
+  #iscIfThen93True
+
+  pass
+ else:
+  iscIfThen70()
+  #iscIfThen93False
+
+  pass
+
+def iscIfThen71():
+ if thisiscApp1.iscVdie1text == thisiscApp1.iscVisRedbrains:
+  iscSetCanvasPicture63()
+  #iscIfThen71True
+
+  pass
+ else:
+  iscIfThen93()
+  #iscIfThen71False
+
+  pass
+
+def iscIfThen72():
+ if thisiscApp1.iscVdie1text == thisiscApp1.iscVisYellowshot:
+  iscSetCanvasPicture64()
+  #iscIfThen72True
+
+  pass
+ else:
+  iscIfThen71()
+  #iscIfThen72False
+
+  pass
+
+def iscIfThen73():
+ if thisiscApp1.iscVdie1text == thisiscApp1.iscVisYellowrun:
+  iscSetCanvasPicture65()
+  #iscIfThen73True
+
+  pass
+ else:
+  iscIfThen72()
+  #iscIfThen73False
+
+  pass
+
+def iscIfThen75():
+ if thisiscApp1.iscVdie1text == thisiscApp1.iscVisGreenshot:
+  iscSetCanvasPicture67()
+  #iscIfThen75True
+
+  pass
+ else:
+  iscIfThen74()
+  #iscIfThen75False
+
+  pass
+
+def iscIfThen16():
+ if thisiscApp1.iscVdie1text == thisiscApp1.iscVisGreenrun:
+  iscSetCanvasPicture68()
+  #iscIfThen16True
+
+  pass
+ else:
+  iscIfThen75()
+  #iscIfThen16False
+
+  pass
+
+def iscIfThen2():
+ if thisiscApp1.iscVdie2text == thisiscApp1.iscVisGreenBrains:
+  iscSetCanvasPicture55()
+  #iscIfThen2True
+
+  pass
+ else:
+  iscIfThen56()
+  #iscIfThen2False
+
+  pass
+
+def iscIfThen90():
+ if thisiscApp1.iscVdie1text == thisiscApp1.iscVisGreenBrains:
+  iscSetCanvasPicture69()
+  #iscIfThen90True
+
+  pass
+ else:
+  iscIfThen16()
+  #iscIfThen90False
+
+  pass
+
+def iscSetCanvasPicture76():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rshot.jpg") #iscSetCanvasPicture76Done
+
+
+def iscIfThen74():
+ if thisiscApp1.iscVdie1text == thisiscApp1.iscVisYellowbrains:
+  iscSetCanvasPicture66()
+  #iscIfThen74True
+
+  pass
+ else:
+  iscIfThen73()
+  #iscIfThen74False
+
+  pass
+
+def iscSetCanvasPicture78():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rfeet.jpg") #iscSetCanvasPicture78Done
+
+
+def iscSetCanvasPicture77():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rbrain.jpg") #iscSetCanvasPicture77Done
+
+
+def iscSetCanvasPicture79():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yshot.jpg") #iscSetCanvasPicture79Done
+
+
+def iscSetCanvasPicture80():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yfeet.jpg") #iscSetCanvasPicture80Done
+
+
+def iscSetCanvasPicture81():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/ybrain.jpg") #iscSetCanvasPicture81Done
+
+
+def iscSetCanvasPicture82():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gshot.jpg") #iscSetCanvasPicture82Done
+
+
+def iscSetCanvasPicture83():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gfeet.jpg") #iscSetCanvasPicture83Done
+
+
+def iscSetCanvasPicture47():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gbrain.jpg") #iscSetCanvasPicture47Done
+
+
+def iscIfThen91():
+ if thisiscApp1.iscVdie0text == thisiscApp1.iscVisRedshot:
+  iscSetCanvasPicture76()
+  #iscIfThen91True
+
+  pass
+ else:
+  iscSetLabel48()
+  #iscIfThen91False
+
+  pass
+
+def iscIfThen92():
+ if thisiscApp1.iscVdie0text == thisiscApp1.iscVisRedrun:
+  iscSetCanvasPicture78()
+  #iscIfThen92True
+
+  pass
+ else:
+  iscIfThen91()
+  #iscIfThen92False
+
+  pass
+
+def iscIfThen89():
+ if thisiscApp1.iscVdie0text == thisiscApp1.iscVisRedbrains:
+  iscSetCanvasPicture77()
+  #iscIfThen89True
+
+  pass
+ else:
+  iscIfThen92()
+  #iscIfThen89False
+
+  pass
+
+def iscIfThen88():
+ if thisiscApp1.iscVdie0text == thisiscApp1.iscVisYellowshot:
+  iscSetCanvasPicture79()
+  #iscIfThen88True
+
+  pass
+ else:
+  iscIfThen89()
+  #iscIfThen88False
+
+  pass
+
+def iscIfThen87():
+ if thisiscApp1.iscVdie0text == thisiscApp1.iscVisYellowrun:
+  iscSetCanvasPicture80()
+  #iscIfThen87True
+
+  pass
+ else:
+  iscIfThen88()
+  #iscIfThen87False
+
+  pass
+
+def iscIfThen86():
+ if thisiscApp1.iscVdie0text == thisiscApp1.iscVisYellowbrains:
+  iscSetCanvasPicture81()
+  #iscIfThen86True
+
+  pass
+ else:
+  iscIfThen87()
+  #iscIfThen86False
+
+  pass
+
+def iscIfThen85():
+ if thisiscApp1.iscVdie0text == thisiscApp1.iscVisGreenshot:
+  iscSetCanvasPicture82()
+  #iscIfThen85True
+
+  pass
+ else:
+  iscIfThen86()
+  #iscIfThen85False
+
+  pass
+
+def iscIfThen84():
+ if thisiscApp1.iscVdie0text == thisiscApp1.iscVisGreenrun:
+  iscSetCanvasPicture83()
+  #iscIfThen84True
+
+  pass
+ else:
+  iscIfThen85()
+  #iscIfThen84False
+
+  pass
 
 def iscIfThen17():
- if thisiscApp1.iscVdie2text == thisiscApp1.iscVisRedshot:
-  iscSetCanvasPicture18()
+ if thisiscApp1.iscVdie0text == thisiscApp1.iscVisGreenBrains:
+  iscSetCanvasPicture47()
   #iscIfThen17True
 
   pass
  else:
-  iscIfThen15()
+  iscIfThen84()
   #iscIfThen17False
 
   pass
 
-def iscSetCanvasPicture18():
- thisiscApp1.iscWindow4Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rshot.jpg") #iscSetCanvasPicture18Done
-
-
-def iscIfThen19():
- if thisiscApp1.iscVdie1text == thisiscApp1.iscVisRedrun:
-  iscSetCanvasPicture62()
-  #iscIfThen19True
-
-  pass
+def iscGetDiceText44():
+ if thisiscApp1.iscVtwo  <=  (len(thisiscApp1.iscVhand.dice) - 1):
+  d = thisiscApp1.iscVhand.dice[thisiscApp1.iscVtwo]
+  thisiscApp1.iscVdie2text = d.__repr__()
+  iscIfThen2()
+  #iscGetDiceText44text done
  else:
-  iscIfThen54()
-  #iscIfThen19False
-
-  pass
-
-def iscIfThen20():
- if thisiscApp1.iscVdie0text == thisiscApp1.iscVisRedrun:
-  iscSetCanvasPicture45()
-  #iscIfThen20True
-
-  pass
- else:
-  iscIfThen21()
-  #iscIfThen20False
-
-  pass
-
-def iscIfThen21():
- if thisiscApp1.iscVdie0text == thisiscApp1.iscVisRedshot:
-  iscSetCanvasPicture47()
-  #iscIfThen21True
-
-  pass
- else:
-  iscSetLabel77()
-  #iscIfThen21False
-
-  pass
-
-def iscIfThen22():
- if thisiscApp1.iscVdie1text == thisiscApp1.iscVisGreenBrains:
-  iscSetCanvasPicture55()
-  #iscIfThen22True
-
-  pass
- else:
-  iscIfThen48()
-  #iscIfThen22False
-
-  pass
-
-def iscIfThen23():
- if thisiscApp1.iscVdie0text == thisiscApp1.iscVisRedbrains:
-  iscSetCanvasPicture46()
-  #iscIfThen23True
-
-  pass
- else:
-  iscIfThen20()
-  #iscIfThen23False
-
-  pass
-
-def iscIfThen24():
- if thisiscApp1.iscVdie0text == thisiscApp1.iscVisYellowshot:
-  iscSetCanvasPicture44()
-  #iscIfThen24True
-
-  pass
- else:
-  iscIfThen23()
-  #iscIfThen24False
-
-  pass
-
-def iscIfThen25():
- if thisiscApp1.iscVdie0text == thisiscApp1.iscVisYellowrun:
-  iscSetCanvasPicture43()
-  #iscIfThen25True
-
-  pass
- else:
-  iscIfThen24()
-  #iscIfThen25False
-
-  pass
-
-def iscIfThen26():
- if thisiscApp1.iscVdie0text == thisiscApp1.iscVisYellowbrains:
-  iscSetCanvasPicture42()
-  #iscIfThen26True
-
-  pass
- else:
-  iscIfThen25()
-  #iscIfThen26False
-
-  pass
-
-def iscIfThen27():
- if thisiscApp1.iscVdie0text == thisiscApp1.iscVisGreenshot:
-  iscSetCanvasPicture41()
-  #iscIfThen27True
-
-  pass
- else:
-  iscIfThen26()
-  #iscIfThen27False
-
-  pass
-
-def iscIfThen28():
- if thisiscApp1.iscVdie0text == thisiscApp1.iscVisGreenrun:
-  iscSetCanvasPicture40()
-  #iscIfThen28True
-
-  pass
- else:
-  iscIfThen27()
-  #iscIfThen28False
-
-  pass
-
-def iscIfThen29():
- if thisiscApp1.iscVdie0text == thisiscApp1.iscVisGreenBrains:
+  thisiscApp1.iscVdie2text = "blank"
   iscSetCanvasPicture39()
-  #iscIfThen29True
+  #iscGetDiceText44blank
 
-  pass
+def iscSetCanvasPicture39():
+ thisiscApp1.iscWindow38Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/blank.jpg") #iscSetCanvasPicture39Done
+
+
+def iscSetCanvasPicture40():
+ thisiscApp1.iscWindow38Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/blank.jpg") #iscSetCanvasPicture40Done
+
+
+def iscGetDiceText12():
+ if thisiscApp1.iscVzero  <=  (len(thisiscApp1.iscVhand.dice) - 1):
+  d = thisiscApp1.iscVhand.dice[thisiscApp1.iscVzero]
+  thisiscApp1.iscVdie0text = d.__repr__()
+  iscGetDiceText42()
+  iscIfThen17()
+  #iscGetDiceText12text done
  else:
-  iscIfThen28()
-  #iscIfThen29False
+  thisiscApp1.iscVdie0text = "blank"
+  iscSetCanvasPicture10()
+  iscSetCanvasPicture40()
+  iscSetCanvasPicture39()
+  #iscGetDiceText12blank
 
-  pass
-
-def iscAppQuit30():
- thisiscApp1.destroy(None,None)
- #iscAppQuit30Done
+def iscSetCanvasPicture10():
+ thisiscApp1.iscWindow38die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/blank.jpg") #iscSetCanvasPicture10Done
 
 
-def iscGet_Hand32():
+def iscPortalDestination45():
+ iscGetDiceText12()
+ #iscPortalDestination45Arrived
+
+
+def iscGetDiceText42():
+ if thisiscApp1.iscVone  <=  (len(thisiscApp1.iscVhand.dice) - 1):
+  d = thisiscApp1.iscVhand.dice[thisiscApp1.iscVone]
+  thisiscApp1.iscVdie1text = d.__repr__()
+  iscIfThen90()
+  iscGetDiceText44()
+  #iscGetDiceText42text done
+ else:
+  thisiscApp1.iscVdie1text = "blank"
+  iscSetCanvasPicture40()
+  iscSetCanvasPicture39()
+  #iscGetDiceText42blank
+
+def iscGet_Hand9():
  thisiscApp1.iscVhand.fill(thisiscApp1.iscVDice_Cup)
- iscRoll_Hand37()
- #iscGet_Hand32Done
+ iscPortalDeparture7()
+ #iscGet_Hand9Done
 
-def iscinit_zdice34():
+def iscPortalDeparture7():
+ iscPortalDestination45()
+ #iscPortalDeparture7Done
+
+
+def iscScoreHand37():
+ if thisiscApp1.iscVhand.score():
+  iscgetHandShots35()
+  #iscScoreHand37Alive
+ else:
+  iscSetLabel6()
+  #iscScoreHand37Dead
+def iscSetLabel6():
+ thisiscApp1.iscWindow38Label0.set_label(thisiscApp1.iscVDeadMessage)
+ #iscSetLabel6Done
+
+
+def iscgetHandShots35():
+ thisiscApp1.iscVhandShots=thisiscApp1.iscVhand.shots
+ iscConvertNumberToText5()
+ #iscgetHandShots35Done
+
+def iscConvertNumberToText5():
+ thisiscApp1.iscVtemp = str(thisiscApp1.iscVhandShots)
+ iscSetLabel33()
+ #iscConvertNumberToText5Done
+
+
+def iscSetLabel14():
+ thisiscApp1.iscWindow38Brains0.set_label(thisiscApp1.iscVtemp)
+ iscPortalDeparture46()
+ #iscSetLabel14Done
+
+
+def iscPortalDeparture46():
+ iscPortalDestination45()
+ #iscPortalDeparture46Done
+
+
+def iscConvertNumberToText15():
+ thisiscApp1.iscVtemp = str(thisiscApp1.iscVhandBrains)
+ iscSetLabel14()
+ #iscConvertNumberToText15Done
+
+
+def iscgetHandBrains32():
+ thisiscApp1.iscVhandBrains=thisiscApp1.iscVhand.brains
+ iscConvertNumberToText15()
+ #iscgetHandBrains32Done
+
+def iscSetLabel33():
+ thisiscApp1.iscWindow38Shots0.set_label(thisiscApp1.iscVtemp)
+ iscgetHandBrains32()
+ #iscSetLabel33Done
+
+
+def iscPortalDeparture28():
+ iscPortalDestination45()
+ #iscPortalDeparture28Done
+
+
+def iscRoll_Hand30():
+ thisiscApp1.iscVhand.roll()
+ iscPortalDeparture28()
+ #iscRoll_Hand30Rolled
+
+def iscPortalDeparture26():
+ iscPortalDestination45()
+ #iscPortalDeparture26Done
+
+
+def iscCloseWindow21():
+ thisiscApp1.iscWindow20Player1.destroy()
+ iscWindow38()
+ #iscCloseWindow21Done
+
+
+def iscinit_zdice25():
  thisiscApp1.iscVDice_Cup=Dice_Cup()
  thisiscApp1.iscVPlayers_Group=Players_Group()
  thisiscApp1.iscVhand=Hand()
 
- iscGet_Hand32()
- #iscinit_zdice34Done
-def iscIfThen35():
- if thisiscApp1.iscVdie2text == thisiscApp1.iscVisGreenBrains:
-  iscSetCanvasPicture70()
-  #iscIfThen35True
-
-  pass
- else:
-  iscIfThen69()
-  #iscIfThen35False
-
-  pass
-
-def iscRoll_Hand37():
- thisiscApp1.iscVhand.roll()
- iscPortalDeparture38()
- #iscRoll_Hand37Rolled
-
-def iscPortalDeparture38():
- iscPortalDestination9()
- #iscPortalDeparture38Done
-
-
-def iscSetCanvasPicture39():
- thisiscApp1.iscWindow4die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gbrain.jpg") #iscSetCanvasPicture39Done
-
-
-def iscSetCanvasPicture40():
- thisiscApp1.iscWindow4die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gfeet.jpg") #iscSetCanvasPicture40Done
-
-
-def iscSetCanvasPicture41():
- thisiscApp1.iscWindow4die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gshot.jpg") #iscSetCanvasPicture41Done
-
-
-def iscSetCanvasPicture42():
- thisiscApp1.iscWindow4die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/ybrain.jpg") #iscSetCanvasPicture42Done
-
-
-def iscSetCanvasPicture43():
- thisiscApp1.iscWindow4die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yfeet.jpg") #iscSetCanvasPicture43Done
-
-
-def iscSetCanvasPicture44():
- thisiscApp1.iscWindow4die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yshot.jpg") #iscSetCanvasPicture44Done
-
-
-def iscSetCanvasPicture45():
- thisiscApp1.iscWindow4die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rfeet.jpg") #iscSetCanvasPicture45Done
-
-
-def iscSetCanvasPicture46():
- thisiscApp1.iscWindow4die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rbrain.jpg") #iscSetCanvasPicture46Done
-
-
-def iscSetCanvasPicture47():
- thisiscApp1.iscWindow4die00.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rshot.jpg") #iscSetCanvasPicture47Done
-
-
-def iscIfThen48():
- if thisiscApp1.iscVdie1text == thisiscApp1.iscVisGreenrun:
-  iscSetCanvasPicture56()
-  #iscIfThen48True
-
-  pass
- else:
-  iscIfThen49()
-  #iscIfThen48False
-
-  pass
-
-def iscIfThen49():
- if thisiscApp1.iscVdie1text == thisiscApp1.iscVisGreenshot:
-  iscSetCanvasPicture57()
-  #iscIfThen49True
-
-  pass
- else:
-  iscIfThen50()
-  #iscIfThen49False
-
-  pass
-
-def iscIfThen50():
- if thisiscApp1.iscVdie1text == thisiscApp1.iscVisYellowbrains:
-  iscSetCanvasPicture58()
-  #iscIfThen50True
-
-  pass
- else:
-  iscIfThen51()
-  #iscIfThen50False
-
-  pass
-
-def iscIfThen51():
- if thisiscApp1.iscVdie1text == thisiscApp1.iscVisYellowrun:
-  iscSetCanvasPicture59()
-  #iscIfThen51True
-
-  pass
- else:
-  iscIfThen52()
-  #iscIfThen51False
-
-  pass
-
-def iscIfThen52():
- if thisiscApp1.iscVdie1text == thisiscApp1.iscVisYellowshot:
-  iscSetCanvasPicture60()
-  #iscIfThen52True
-
-  pass
- else:
-  iscIfThen53()
-  #iscIfThen52False
-
-  pass
-
-def iscIfThen53():
- if thisiscApp1.iscVdie1text == thisiscApp1.iscVisRedbrains:
-  iscSetCanvasPicture61()
-  #iscIfThen53True
-
-  pass
- else:
-  iscIfThen19()
-  #iscIfThen53False
-
-  pass
-
-def iscIfThen54():
- if thisiscApp1.iscVdie1text == thisiscApp1.iscVisRedshot:
-  iscSetCanvasPicture63()
-  #iscIfThen54True
-
-  pass
- else:
-  iscSetLabel77()
-  #iscIfThen54False
-
-  pass
-
-def iscSetCanvasPicture55():
- thisiscApp1.iscWindow4Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gbrain.jpg") #iscSetCanvasPicture55Done
-
-
-def iscSetCanvasPicture56():
- thisiscApp1.iscWindow4Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gfeet.jpg") #iscSetCanvasPicture56Done
-
-
-def iscSetCanvasPicture57():
- thisiscApp1.iscWindow4Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gshot.jpg") #iscSetCanvasPicture57Done
-
-
-def iscSetCanvasPicture58():
- thisiscApp1.iscWindow4Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/ybrain.jpg") #iscSetCanvasPicture58Done
-
-
-def iscSetCanvasPicture59():
- thisiscApp1.iscWindow4Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yfeet.jpg") #iscSetCanvasPicture59Done
-
-
-def iscSetCanvasPicture60():
- thisiscApp1.iscWindow4Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yshot.jpg") #iscSetCanvasPicture60Done
-
-
-def iscSetCanvasPicture61():
- thisiscApp1.iscWindow4Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rbrain.jpg") #iscSetCanvasPicture61Done
-
-
-def iscSetCanvasPicture62():
- thisiscApp1.iscWindow4Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rfeet.jpg") #iscSetCanvasPicture62Done
-
-
-def iscSetCanvasPicture63():
- thisiscApp1.iscWindow4Die10.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rshot.jpg") #iscSetCanvasPicture63Done
-
-
-def iscIfThen64():
- if thisiscApp1.iscVdie2text == thisiscApp1.iscVisGreenshot:
-  iscSetCanvasPicture72()
-  #iscIfThen64True
-
-  pass
- else:
-  iscIfThen65()
-  #iscIfThen64False
-
-  pass
-
-def iscIfThen65():
- if thisiscApp1.iscVdie2text == thisiscApp1.iscVisYellowbrains:
-  iscSetCanvasPicture73()
-  #iscIfThen65True
-
-  pass
- else:
-  iscIfThen66()
-  #iscIfThen65False
-
-  pass
-
-def iscIfThen66():
- if thisiscApp1.iscVdie2text == thisiscApp1.iscVisYellowrun:
-  iscSetCanvasPicture74()
-  #iscIfThen66True
-
-  pass
- else:
-  iscIfThen67()
-  #iscIfThen66False
-
-  pass
-
-def iscIfThen67():
- if thisiscApp1.iscVdie2text == thisiscApp1.iscVisYellowshot:
-  iscSetCanvasPicture75()
-  #iscIfThen67True
-
-  pass
- else:
-  iscIfThen68()
-  #iscIfThen67False
-
-  pass
-
-def iscIfThen68():
- if thisiscApp1.iscVdie2text == thisiscApp1.iscVisRedbrains:
-  iscSetCanvasPicture76()
-  #iscIfThen68True
-
-  pass
- else:
-  iscIfThen17()
-  #iscIfThen68False
-
-  pass
-
-def iscIfThen69():
- if thisiscApp1.iscVdie2text == thisiscApp1.iscVisGreenrun:
-  iscSetCanvasPicture71()
-  #iscIfThen69True
-
-  pass
- else:
-  iscIfThen64()
-  #iscIfThen69False
-
-  pass
-
-def iscSetCanvasPicture70():
- thisiscApp1.iscWindow4Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gbrain.jpg") #iscSetCanvasPicture70Done
-
-
-def iscSetCanvasPicture71():
- thisiscApp1.iscWindow4Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gfeet.jpg") #iscSetCanvasPicture71Done
-
-
-def iscSetCanvasPicture72():
- thisiscApp1.iscWindow4Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/gshot.jpg") #iscSetCanvasPicture72Done
-
-
-def iscSetCanvasPicture73():
- thisiscApp1.iscWindow4Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/ybrain.jpg") #iscSetCanvasPicture73Done
-
-
-def iscSetCanvasPicture74():
- thisiscApp1.iscWindow4Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yfeet.jpg") #iscSetCanvasPicture74Done
-
-
-def iscSetCanvasPicture75():
- thisiscApp1.iscWindow4Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/yshot.jpg") #iscSetCanvasPicture75Done
-
-
-def iscSetCanvasPicture76():
- thisiscApp1.iscWindow4Die20.set_from_file(os.path.dirname(sys.argv[0]) + "/ISCimages/rbrain.jpg") #iscSetCanvasPicture76Done
-
-
-def iscSetLabel77():
- thisiscApp1.iscWindow4Label0.set_label(thisiscApp1.iscVerror)
- #iscSetLabel77Done
-
-
-def iscPortalDeparture12():
- iscPortalDestination9()
- #iscPortalDeparture12Done
-
-
-def iscWindow4():
- thisiscApp1.iscWindow4Die10 = gtk.Image()
- thisiscApp1.iscWindow4Die20 = gtk.Image()
- thisiscApp1.iscWindow4Roll0 = gtk.Button("Roll")
- thisiscApp1.iscWindow4test10 = gtk.Entry()
- thisiscApp1.iscWindow4test20 = gtk.Entry()
- thisiscApp1.iscWindow4die00 = gtk.Image()
- thisiscApp1.iscWindow4Label0 =gtk.Label("Hand")
- thisiscApp1.iscWindow4Test00 = gtk.Entry()
- thisiscApp1.iscWindow4Score2 = gtk.Button("Score Hand")
- thisiscApp1.iscWindow4Pass3 = gtk.Button("Pass")
- thisiscApp1.iscWindow4Brains5 =gtk.Label("Brains")
- thisiscApp1.iscWindow4Shots6 =gtk.Label("Shots")
- thisiscApp1.iscWindow4Window1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
- thisiscApp1.iscWindow4Window1Fixed = gtk.Fixed()
- thisiscApp1.iscWindow4Window1.set_title("Window")
- thisiscApp1.iscWindow4Window1.set_default_size(480, 640)
- thisiscApp1.iscWindow4Window1.add(thisiscApp1.iscWindow4Window1Fixed)
- thisiscApp1.iscWindow4Window1Fixed.width = 480
- thisiscApp1.iscWindow4Window1Fixed.height = 640
- thisiscApp1.iscWindow4Window1.connect("delete_event", iscWindow4Closed)
- thisiscApp1.iscWindow4Window1.set_resizable(False)
- thisiscApp1.iscWindow4Window1Fixed.show()
- iscWindow4Die10EventBox = gtk.EventBox()
- iscWindow4Die10EventBox.set_size_request(60, 60)
- iscWindow4Die10EventBox.connect("button_press_event", iscWindow4Die1Clicked)
- thisiscApp1.iscWindow4Die10.set_size_request(60, 60)
- iscWindow4Die10EventBox.add(thisiscApp1.iscWindow4Die10)
- thisiscApp1.iscWindow4Window1Fixed.put(iscWindow4Die10EventBox, 140, 150)
- thisiscApp1.iscWindow4Die10.show()
- iscWindow4Die10EventBox.show()
- iscWindow4Die20EventBox = gtk.EventBox()
- iscWindow4Die20EventBox.set_size_request(60, 60)
- iscWindow4Die20EventBox.connect("button_press_event", iscWindow4Die2Clicked)
- thisiscApp1.iscWindow4Die20.set_size_request(60, 60)
- iscWindow4Die20EventBox.add(thisiscApp1.iscWindow4Die20)
- thisiscApp1.iscWindow4Window1Fixed.put(iscWindow4Die20EventBox, 230, 150)
- thisiscApp1.iscWindow4Die20.show()
- iscWindow4Die20EventBox.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Roll0, 29, 237)
- thisiscApp1.iscWindow4Roll0.set_size_request(80, 26)
- thisiscApp1.iscWindow4Roll0.connect("clicked", iscWindow4RollClicked)
- thisiscApp1.iscWindow4Roll0.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4test10, 228, 249)
- thisiscApp1.iscWindow4test10.set_text("test box")
- thisiscApp1.iscWindow4test10.set_size_request(132, 27)
- thisiscApp1.iscWindow4test10.connect("changed", iscWindow4test1Changed)
- thisiscApp1.iscWindow4test10.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4test20, 231, 282)
- thisiscApp1.iscWindow4test20.set_text("TextBox")
- thisiscApp1.iscWindow4test20.set_size_request(132, 25)
- thisiscApp1.iscWindow4test20.connect("changed", iscWindow4test2Changed)
- thisiscApp1.iscWindow4test20.show()
- iscWindow4die00EventBox = gtk.EventBox()
- iscWindow4die00EventBox.set_size_request(60, 60)
- iscWindow4die00EventBox.connect("button_press_event", iscWindow4die0Clicked)
- thisiscApp1.iscWindow4die00.set_size_request(60, 60)
- iscWindow4die00EventBox.add(thisiscApp1.iscWindow4die00)
- thisiscApp1.iscWindow4Window1Fixed.put(iscWindow4die00EventBox, 50, 150)
- thisiscApp1.iscWindow4die00.show()
- iscWindow4die00EventBox.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Label0, 145, 120)
- thisiscApp1.iscWindow4Label0.set_size_request(45, 18)
- thisiscApp1.iscWindow4Label0.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Test00, 228, 219)
- thisiscApp1.iscWindow4Test00.set_text("Textbox0")
- thisiscApp1.iscWindow4Test00.set_size_request(130, 25)
- thisiscApp1.iscWindow4Test00.connect("changed", iscWindow4Test0Changed)
- thisiscApp1.iscWindow4Test00.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Score2, 30, 279)
- thisiscApp1.iscWindow4Score2.set_size_request(80, 26)
- thisiscApp1.iscWindow4Score2.connect("clicked", iscWindow4ScoreClicked)
- thisiscApp1.iscWindow4Score2.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Pass3, 125, 239)
- thisiscApp1.iscWindow4Pass3.set_size_request(80, 26)
- thisiscApp1.iscWindow4Pass3.connect("clicked", iscWindow4PassClicked)
- thisiscApp1.iscWindow4Pass3.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Brains5, 52, 120)
- thisiscApp1.iscWindow4Brains5.set_size_request(55, 20)
- thisiscApp1.iscWindow4Brains5.show()
- thisiscApp1.iscWindow4Window1Fixed.put(thisiscApp1.iscWindow4Shots6, 233, 120)
- thisiscApp1.iscWindow4Shots6.set_size_request(57, 18)
- thisiscApp1.iscWindow4Shots6.show()
- thisiscApp1.iscWindow4Window1.show()
- iscinit_zdice34()
- #iscWindow4Opened
- #iscWindow4Done
-
-
-def iscWindow4Closed(self, other):
+ iscWindow20()
+ #iscinit_zdice25Done
+def iscGetTextField3():
+ thisiscApp1.iscVCurrentPlayer = thisiscApp1.iscWindow20Pname0.get_buffer().get_text(thisiscApp1.iscWindow20Pname0.get_buffer().get_start_iter(), thisiscApp1.iscWindow20Pname0.get_buffer().get_end_iter())
+ iscAddPlayer128()
+ #iscGetTextField3Done
+
+
+def iscWindow20():
+ thisiscApp1.iscWindow20addPlayer0 = gtk.Button("Add")
+ thisiscApp1.iscWindow20done0 = gtk.Button("Done")
+ thisiscApp1.iscWindow20Plist0 = gtk.TextView(buffer=None)
+ thisiscApp1.iscWindow20Pname0 = gtk.TextView(buffer=None)
+ thisiscApp1.iscWindow20Label0 =gtk.Label("Enter your name")
+ thisiscApp1.iscWindow20Player1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
+ thisiscApp1.iscWindow20Player1Fixed = gtk.Fixed()
+ thisiscApp1.iscWindow20Player1.set_title("Player entry")
+ thisiscApp1.iscWindow20Player1.set_default_size(640, 480)
+ thisiscApp1.iscWindow20Player1.add(thisiscApp1.iscWindow20Player1Fixed)
+ thisiscApp1.iscWindow20Player1Fixed.width = 640
+ thisiscApp1.iscWindow20Player1Fixed.height = 480
+ thisiscApp1.iscWindow20Player1.connect("delete_event", iscWindow20Closed)
+ thisiscApp1.iscWindow20Player1.set_resizable(False)
+ thisiscApp1.iscWindow20Player1Fixed.show()
+ thisiscApp1.iscWindow20Player1Fixed.put(thisiscApp1.iscWindow20addPlayer0, 104, 129)
+ thisiscApp1.iscWindow20addPlayer0.set_size_request(80, 26)
+ thisiscApp1.iscWindow20addPlayer0.connect("clicked", iscWindow20addPlayerClicked)
+ thisiscApp1.iscWindow20addPlayer0.show()
+ thisiscApp1.iscWindow20Player1Fixed.put(thisiscApp1.iscWindow20done0, 105, 171)
+ thisiscApp1.iscWindow20done0.set_size_request(80, 26)
+ thisiscApp1.iscWindow20done0.connect("clicked", iscWindow20doneClicked)
+ thisiscApp1.iscWindow20done0.show()
+ thisiscApp1.iscWindow20Player1Fixed.put(thisiscApp1.iscWindow20Plist0, 60, 208)
+ thisiscApp1.iscWindow20Plist0.set_size_request(188, 73)
+ thisiscApp1.iscWindow20Plist0.show()
+ thisiscApp1.iscWindow20Player1Fixed.put(thisiscApp1.iscWindow20Pname0, 38, 48)
+ thisiscApp1.iscWindow20Pname0.set_size_request(250, 25)
+ thisiscApp1.iscWindow20Pname0.show()
+ thisiscApp1.iscWindow20Player1Fixed.put(thisiscApp1.iscWindow20Label0, 62, 20)
+ thisiscApp1.iscWindow20Label0.set_size_request(109, 20)
+ thisiscApp1.iscWindow20Label0.show()
+ thisiscApp1.iscWindow20Player1.show()
+ #iscWindow20Opened
+ #iscWindow20Done
+
+
+def iscWindow20Closed(self, other):
  pass
- iscAppQuit30()
- #iscWindow4Closed
+ iscPortalDeparture99()
+ #iscWindow20Closed
 
 
-def iscWindow4Die1Clicked(widget, event):
+def iscWindow20addPlayerClicked(self):
  pass
- #iscWindow4Die1Clicked
+ iscGetTextField3()
+ #iscWindow20addPlayerClicked
 
 
-def iscWindow4Die2Clicked(widget, event):
+def iscWindow20doneClicked(self):
  pass
- #iscWindow4Die2Clicked
+ iscCloseWindow21()
+ #iscWindow20doneClicked
 
 
-def iscWindow4RollClicked(self):
+def iscWindow38():
+ thisiscApp1.iscWindow38Die10 = gtk.Image()
+ thisiscApp1.iscWindow38Die20 = gtk.Image()
+ thisiscApp1.iscWindow38Roll0 = gtk.Button("Roll")
+ thisiscApp1.iscWindow38test10 = gtk.Entry()
+ thisiscApp1.iscWindow38test20 = gtk.Entry()
+ thisiscApp1.iscWindow38die00 = gtk.Image()
+ thisiscApp1.iscWindow38Label0 =gtk.Label("Hand")
+ thisiscApp1.iscWindow38Test00 = gtk.Entry()
+ thisiscApp1.iscWindow38Score0 = gtk.Button("Score Hand")
+ thisiscApp1.iscWindow38Pass0 = gtk.Button("Pass")
+ thisiscApp1.iscWindow38Brains0 =gtk.Label("Brains")
+ thisiscApp1.iscWindow38Shots0 =gtk.Label("Shots")
+ thisiscApp1.iscWindow38getdice0 = gtk.Button("get dice")
+ thisiscApp1.iscWindow38Window1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
+ thisiscApp1.iscWindow38Window1Fixed = gtk.Fixed()
+ thisiscApp1.iscWindow38Window1.set_title("Window")
+ thisiscApp1.iscWindow38Window1.set_default_size(640, 480)
+ thisiscApp1.iscWindow38Window1.add(thisiscApp1.iscWindow38Window1Fixed)
+ thisiscApp1.iscWindow38Window1Fixed.width = 640
+ thisiscApp1.iscWindow38Window1Fixed.height = 480
+ thisiscApp1.iscWindow38Window1.connect("delete_event", iscWindow38Closed)
+ thisiscApp1.iscWindow38Window1.set_resizable(False)
+ thisiscApp1.iscWindow38Window1Fixed.show()
+ iscWindow38Die10EventBox = gtk.EventBox()
+ iscWindow38Die10EventBox.set_size_request(60, 60)
+ iscWindow38Die10EventBox.connect("button_press_event", iscWindow38Die1Clicked)
+ thisiscApp1.iscWindow38Die10.set_size_request(60, 60)
+ iscWindow38Die10EventBox.add(thisiscApp1.iscWindow38Die10)
+ thisiscApp1.iscWindow38Window1Fixed.put(iscWindow38Die10EventBox, 140, 150)
+ thisiscApp1.iscWindow38Die10.show()
+ iscWindow38Die10EventBox.show()
+ iscWindow38Die20EventBox = gtk.EventBox()
+ iscWindow38Die20EventBox.set_size_request(60, 60)
+ iscWindow38Die20EventBox.connect("button_press_event", iscWindow38Die2Clicked)
+ thisiscApp1.iscWindow38Die20.set_size_request(60, 60)
+ iscWindow38Die20EventBox.add(thisiscApp1.iscWindow38Die20)
+ thisiscApp1.iscWindow38Window1Fixed.put(iscWindow38Die20EventBox, 230, 150)
+ thisiscApp1.iscWindow38Die20.show()
+ iscWindow38Die20EventBox.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38Roll0, 29, 237)
+ thisiscApp1.iscWindow38Roll0.set_size_request(80, 26)
+ thisiscApp1.iscWindow38Roll0.connect("clicked", iscWindow38RollClicked)
+ thisiscApp1.iscWindow38Roll0.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38test10, 228, 249)
+ thisiscApp1.iscWindow38test10.set_text("test box")
+ thisiscApp1.iscWindow38test10.set_size_request(132, 27)
+ thisiscApp1.iscWindow38test10.connect("changed", iscWindow38test1Changed)
+ thisiscApp1.iscWindow38test10.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38test20, 231, 282)
+ thisiscApp1.iscWindow38test20.set_text("TextBox")
+ thisiscApp1.iscWindow38test20.set_size_request(132, 25)
+ thisiscApp1.iscWindow38test20.connect("changed", iscWindow38test2Changed)
+ thisiscApp1.iscWindow38test20.show()
+ iscWindow38die00EventBox = gtk.EventBox()
+ iscWindow38die00EventBox.set_size_request(60, 60)
+ iscWindow38die00EventBox.connect("button_press_event", iscWindow38die0Clicked)
+ thisiscApp1.iscWindow38die00.set_size_request(60, 60)
+ iscWindow38die00EventBox.add(thisiscApp1.iscWindow38die00)
+ thisiscApp1.iscWindow38Window1Fixed.put(iscWindow38die00EventBox, 50, 150)
+ thisiscApp1.iscWindow38die00.show()
+ iscWindow38die00EventBox.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38Label0, 145, 120)
+ thisiscApp1.iscWindow38Label0.set_size_request(45, 18)
+ thisiscApp1.iscWindow38Label0.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38Test00, 228, 219)
+ thisiscApp1.iscWindow38Test00.set_text("Textbox0")
+ thisiscApp1.iscWindow38Test00.set_size_request(130, 25)
+ thisiscApp1.iscWindow38Test00.connect("changed", iscWindow38Test0Changed)
+ thisiscApp1.iscWindow38Test00.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38Score0, 27, 279)
+ thisiscApp1.iscWindow38Score0.set_size_request(80, 26)
+ thisiscApp1.iscWindow38Score0.connect("clicked", iscWindow38ScoreClicked)
+ thisiscApp1.iscWindow38Score0.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38Pass0, 125, 239)
+ thisiscApp1.iscWindow38Pass0.set_size_request(80, 26)
+ thisiscApp1.iscWindow38Pass0.connect("clicked", iscWindow38PassClicked)
+ thisiscApp1.iscWindow38Pass0.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38Brains0, 52, 120)
+ thisiscApp1.iscWindow38Brains0.set_size_request(55, 20)
+ thisiscApp1.iscWindow38Brains0.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38Shots0, 233, 120)
+ thisiscApp1.iscWindow38Shots0.set_size_request(57, 18)
+ thisiscApp1.iscWindow38Shots0.show()
+ thisiscApp1.iscWindow38Window1Fixed.put(thisiscApp1.iscWindow38getdice0, 120, 274)
+ thisiscApp1.iscWindow38getdice0.set_size_request(80, 26)
+ thisiscApp1.iscWindow38getdice0.connect("clicked", iscWindow38getdiceClicked)
+ thisiscApp1.iscWindow38getdice0.show()
+ thisiscApp1.iscWindow38Window1.show()
+ iscPortalDeparture26()
+ #iscWindow38Opened
+ #iscWindow38Done
+
+
+def iscWindow38Closed(self, other):
  pass
- iscRoll_Hand14()
- #iscWindow4RollClicked
+ iscPortalDeparture100()
+ #iscWindow38Closed
 
 
-def iscWindow4test1Changed(self):
+def iscWindow38Die1Clicked(widget, event):
  pass
- #iscWindow4test1Changed
+ #iscWindow38Die1Clicked
 
 
-def iscWindow4test2Changed(self):
+def iscWindow38Die2Clicked(widget, event):
  pass
- #iscWindow4test2Changed
+ #iscWindow38Die2Clicked
 
 
-def iscWindow4die0Clicked(widget, event):
+def iscWindow38RollClicked(self):
  pass
- #iscWindow4die0Clicked
+ iscRoll_Hand30()
+ #iscWindow38RollClicked
 
 
-def iscWindow4Test0Changed(self):
+def iscWindow38test1Changed(self):
  pass
- #iscWindow4Test0Changed
+ #iscWindow38test1Changed
 
 
-def iscWindow4ScoreClicked(self):
+def iscWindow38test2Changed(self):
  pass
- iscScoreHand96()
- #iscWindow4ScoreClicked
+ #iscWindow38test2Changed
 
 
-def iscWindow4PassClicked(self):
+def iscWindow38die0Clicked(widget, event):
  pass
- #iscWindow4PassClicked
+ #iscWindow38die0Clicked
 
 
-def iscSetLabel97():
- thisiscApp1.iscWindow4Label0.set_label(thisiscApp1.iscVDeadMessage)
- #iscSetLabel97Done
+def iscWindow38Test0Changed(self):
+ pass
+ #iscWindow38Test0Changed
 
 
-def iscSetLabel98():
- thisiscApp1.iscWindow4Label0.set_label(thisiscApp1.iscVisGreenBrains)
- iscPortalDeparture12()
- #iscSetLabel98Done
+def iscWindow38ScoreClicked(self):
+ pass
+ iscScoreHand37()
+ #iscWindow38ScoreClicked
 
 
-def iscScoreHand96():
- if thisiscApp1.iscVhand.score():
-  iscgetHandShots129()
-  #iscScoreHand96Alive
- else:
-  iscSetLabel97()
-  #iscScoreHand96Dead
-def iscgetHandShots129():
- thisiscApp1.iscVhandShots=thisiscApp1.iscVhand.shots
- iscgetHandBrains131()
- #iscgetHandShots129Done
+def iscWindow38PassClicked(self):
+ pass
+ #iscWindow38PassClicked
 
-def iscgetHandBrains131():
- thisiscApp1.iscVhandBrains=thisiscApp1.iscVhand.brains
- iscSetLabel98()
- #iscgetHandBrains131Done
+
+def iscWindow38getdiceClicked(self):
+ pass
+ iscGet_Hand9()
+ #iscWindow38getdiceClicked
+
+
+def iscPortalDestination101():
+ iscAppQuit27()
+ #iscPortalDestination101Arrived
+
+
+def iscPortalDeparture100():
+ iscPortalDestination101()
+ #iscPortalDeparture100Done
+
+
+def iscPortalDeparture99():
+ iscPortalDestination101()
+ #iscPortalDeparture99Done
+
+
+def iscAppQuit27():
+ thisiscApp1.destroy(None,None)
+ #iscAppQuit27Done
+
+
+def iscSetTextField4():
+ thisiscApp1.iscWindow20Pname0.get_buffer().set_text(thisiscApp1.iscVempty_str)
+ iscplayerlist19()
+ #iscSetTextField4Done
+
+
+def iscplayerlist19():
+ thisiscApp1.iscVtemp=thisiscApp1.iscVPlayers_Group.__repr__()
+ thisiscApp1.iscVNumberPlayers=len(thisiscApp1.iscVPlayers_Group.player_group)
+ iscSetTextField13()
+ #iscplayerlist19Done
+
+def iscSetTextField13():
+ thisiscApp1.iscWindow20Plist0.get_buffer().set_text(thisiscApp1.iscVtemp)
+ #iscSetTextField13Done
+
+
+def iscAddPlayer128():
+ thisiscApp1.iscVPlayers_Group.add_player(thisiscApp1.iscVtemp)
+ iscSetTextField4()
+ #iscAddPlayer128Done
 
 #EndOfFunctions
 
 thisiscApp1 = iscApp1()
 
-iscWindow4()
+iscinit_zdice25()
 #iscApp1Launched
 #EndOfStatements
 

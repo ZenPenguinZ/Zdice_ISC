@@ -11,7 +11,8 @@ class Player(object):
         self.name = name
         self.brain_count = brain_count
     def __repr__(self):
-        return "player " + self.name + " has " + str(self.brain_count) + " brains."
+        logging.warning("player.__repr__" + str(len(self.name)))
+        return "test" #self.name
     def has_won(self):
         if self.brain_count >= self.WINNING_BRAIN_COUNT:
             return True
@@ -31,7 +32,7 @@ class Players_Group(object):
     def __repr__(self):
         temp = []
         for i in self.player_group:
-            temp.append(i.__repr__())
+            temp.append(i.name)
         return "\n".join(temp)
     def add_player(self, name):
         self.player_group.append(Player(name))
@@ -142,7 +143,7 @@ class Hand(object):
             d.roll_die()
     def score(self):
         for i in range(len(self.dice)):
-            temp_die = self.dice.pop(0)  #pop first die in hand
+            temp_die = self.dice.pop(0)  #pop first(left) die in hand
             if temp_die.is_brains():
                 self.brains += 1
             if temp_die.is_shot():
@@ -150,6 +151,6 @@ class Hand(object):
                 if self.shots >= 3:
                     return False  #your Dead, turn over
             if temp_die.is_run():
-                self.dice.append(temp_die) #append back to last die in hand
+                self.dice.append(temp_die) #append back to last(right) die in hand
         return True #you survived
         
