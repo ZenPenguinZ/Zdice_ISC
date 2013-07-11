@@ -48,14 +48,6 @@ class iscApp1:
  iscVCurrentPlayer = ""
  iscVNumberPlayers = 0
  iscVempty_str = ""
- iscWindow12Player1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
- iscWindow12Player1Fixed = gtk.Fixed()
- iscWindow12addPlayer0 = gtk.Button("Add")
- iscWindow12done0 = gtk.Button("Done")
- iscWindow12Plist0 = gtk.TextView(buffer=None)
- iscWindow12Pname0 = gtk.TextView(buffer=None)
- iscWindow12Label0 =gtk.Label("Enter your name")
-
  iscWindow11Window1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
  iscWindow11Window1Fixed = gtk.Fixed()
  iscWindow11Die10 = gtk.Image()
@@ -71,6 +63,15 @@ class iscApp1:
  iscWindow11Brains0 =gtk.Label("Brains")
  iscWindow11Shots0 =gtk.Label("Shots")
  iscWindow11getdice0 = gtk.Button("get dice")
+ iscWindow11dialog2 = gtk.Entry()
+
+ iscWindow12Player1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
+ iscWindow12Player1Fixed = gtk.Fixed()
+ iscWindow12addPlayer0 = gtk.Button("Add")
+ iscWindow12done0 = gtk.Button("Done")
+ iscWindow12Plist0 = gtk.TextView(buffer=None)
+ iscWindow12Pname0 = gtk.TextView(buffer=None)
+ iscWindow12Label0 =gtk.Label("Enter your name")
 
  #EndOfGlobalVariables
 
@@ -83,90 +84,6 @@ class iscApp1:
 
 
 #EndOfClass
-
-def iscAddPlayer2():
- thisiscApp1.iscVPlayers_Group.add_player(thisiscApp1.iscVtemp)
- iscSetTextField6()
- #iscAddPlayer2Done
-
-def iscSetTextField3():
- thisiscApp1.iscWindow12Plist0.get_buffer().set_text(thisiscApp1.iscVtemp)
- #iscSetTextField3Done
-
-
-def iscplayerlist5():
- thisiscApp1.iscVtemp=thisiscApp1.iscVPlayers_Group.__repr__()
- thisiscApp1.iscVNumberPlayers=len(thisiscApp1.iscVPlayers_Group.player_group)
- iscSetTextField3()
- #iscplayerlist5Done
-
-def iscSetTextField6():
- thisiscApp1.iscWindow12Pname0.get_buffer().set_text(thisiscApp1.iscVempty_str)
- iscplayerlist5()
- #iscSetTextField6Done
-
-
-def iscWindow12():
- thisiscApp1.iscWindow12addPlayer0 = gtk.Button("Add")
- thisiscApp1.iscWindow12done0 = gtk.Button("Done")
- thisiscApp1.iscWindow12Plist0 = gtk.TextView(buffer=None)
- thisiscApp1.iscWindow12Pname0 = gtk.TextView(buffer=None)
- thisiscApp1.iscWindow12Label0 =gtk.Label("Enter your name")
- thisiscApp1.iscWindow12Player1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
- thisiscApp1.iscWindow12Player1Fixed = gtk.Fixed()
- thisiscApp1.iscWindow12Player1.set_title("Player entry")
- thisiscApp1.iscWindow12Player1.set_default_size(640, 480)
- thisiscApp1.iscWindow12Player1.add(thisiscApp1.iscWindow12Player1Fixed)
- thisiscApp1.iscWindow12Player1Fixed.width = 640
- thisiscApp1.iscWindow12Player1Fixed.height = 480
- thisiscApp1.iscWindow12Player1.connect("delete_event", iscWindow12Closed)
- thisiscApp1.iscWindow12Player1.set_resizable(False)
- thisiscApp1.iscWindow12Player1Fixed.show()
- thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12addPlayer0, 104, 129)
- thisiscApp1.iscWindow12addPlayer0.set_size_request(80, 26)
- thisiscApp1.iscWindow12addPlayer0.connect("clicked", iscWindow12addPlayerClicked)
- thisiscApp1.iscWindow12addPlayer0.show()
- thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12done0, 105, 171)
- thisiscApp1.iscWindow12done0.set_size_request(80, 26)
- thisiscApp1.iscWindow12done0.connect("clicked", iscWindow12doneClicked)
- thisiscApp1.iscWindow12done0.show()
- thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Plist0, 60, 208)
- thisiscApp1.iscWindow12Plist0.set_size_request(188, 73)
- thisiscApp1.iscWindow12Plist0.show()
- thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Pname0, 38, 48)
- thisiscApp1.iscWindow12Pname0.set_size_request(250, 25)
- thisiscApp1.iscWindow12Pname0.show()
- thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Label0, 62, 20)
- thisiscApp1.iscWindow12Label0.set_size_request(109, 20)
- thisiscApp1.iscWindow12Label0.show()
- thisiscApp1.iscWindow12Player1.show()
- #iscWindow12Opened
- #iscWindow12Done
-
-
-def iscWindow12Closed(self, other):
- pass
- iscAppQuit7()
- #iscWindow12Closed
-
-
-def iscWindow12addPlayerClicked(self):
- pass
- iscGetTextField13()
- #iscWindow12addPlayerClicked
-
-
-def iscWindow12doneClicked(self):
- pass
- iscCloseWindow16()
- #iscWindow12doneClicked
-
-
-def iscGetTextField13():
- thisiscApp1.iscVCurrentPlayer = thisiscApp1.iscWindow12Pname0.get_buffer().get_text(thisiscApp1.iscWindow12Pname0.get_buffer().get_start_iter(), thisiscApp1.iscWindow12Pname0.get_buffer().get_end_iter())
- iscAddPlayer2()
- #iscGetTextField13Done
-
 
 def iscinit_zdice15():
  thisiscApp1.iscVDice_Cup=Dice_Cup()
@@ -749,6 +666,11 @@ def iscPortalDeparture17():
  #iscPortalDeparture17Done
 
 
+def iscAppQuit7():
+ thisiscApp1.destroy(None,None)
+ #iscAppQuit7Done
+
+
 def iscWindow11():
  thisiscApp1.iscWindow11Die10 = gtk.Image()
  thisiscApp1.iscWindow11Die20 = gtk.Image()
@@ -763,6 +685,7 @@ def iscWindow11():
  thisiscApp1.iscWindow11Brains0 =gtk.Label("Brains")
  thisiscApp1.iscWindow11Shots0 =gtk.Label("Shots")
  thisiscApp1.iscWindow11getdice0 = gtk.Button("get dice")
+ thisiscApp1.iscWindow11dialog2 = gtk.Entry()
  thisiscApp1.iscWindow11Window1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
  thisiscApp1.iscWindow11Window1Fixed = gtk.Fixed()
  thisiscApp1.iscWindow11Window1.set_title("Window")
@@ -837,6 +760,11 @@ def iscWindow11():
  thisiscApp1.iscWindow11getdice0.set_size_request(80, 26)
  thisiscApp1.iscWindow11getdice0.connect("clicked", iscWindow11getdiceClicked)
  thisiscApp1.iscWindow11getdice0.show()
+ thisiscApp1.iscWindow11Window1Fixed.put(thisiscApp1.iscWindow11dialog2, 60, 17)
+ thisiscApp1.iscWindow11dialog2.set_text("dialog")
+ thisiscApp1.iscWindow11dialog2.set_size_request(234, 62)
+ thisiscApp1.iscWindow11dialog2.connect("changed", iscWindow11dialogChanged)
+ thisiscApp1.iscWindow11dialog2.show()
  thisiscApp1.iscWindow11Window1.show()
  iscPortalDeparture17()
  #iscWindow11Opened
@@ -902,10 +830,94 @@ def iscWindow11getdiceClicked(self):
  #iscWindow11getdiceClicked
 
 
-def iscAppQuit7():
- thisiscApp1.destroy(None,None)
- #iscAppQuit7Done
+def iscWindow11dialogChanged(self):
+ pass
+ #iscWindow11dialogChanged
 
+
+def iscWindow12():
+ thisiscApp1.iscWindow12addPlayer0 = gtk.Button("Add")
+ thisiscApp1.iscWindow12done0 = gtk.Button("Done")
+ thisiscApp1.iscWindow12Plist0 = gtk.TextView(buffer=None)
+ thisiscApp1.iscWindow12Pname0 = gtk.TextView(buffer=None)
+ thisiscApp1.iscWindow12Label0 =gtk.Label("Enter your name")
+ thisiscApp1.iscWindow12Player1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
+ thisiscApp1.iscWindow12Player1Fixed = gtk.Fixed()
+ thisiscApp1.iscWindow12Player1.set_title("Player entry")
+ thisiscApp1.iscWindow12Player1.set_default_size(640, 480)
+ thisiscApp1.iscWindow12Player1.add(thisiscApp1.iscWindow12Player1Fixed)
+ thisiscApp1.iscWindow12Player1Fixed.width = 640
+ thisiscApp1.iscWindow12Player1Fixed.height = 480
+ thisiscApp1.iscWindow12Player1.connect("delete_event", iscWindow12Closed)
+ thisiscApp1.iscWindow12Player1.set_resizable(False)
+ thisiscApp1.iscWindow12Player1Fixed.show()
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12addPlayer0, 104, 129)
+ thisiscApp1.iscWindow12addPlayer0.set_size_request(80, 26)
+ thisiscApp1.iscWindow12addPlayer0.connect("clicked", iscWindow12addPlayerClicked)
+ thisiscApp1.iscWindow12addPlayer0.show()
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12done0, 105, 171)
+ thisiscApp1.iscWindow12done0.set_size_request(80, 26)
+ thisiscApp1.iscWindow12done0.connect("clicked", iscWindow12doneClicked)
+ thisiscApp1.iscWindow12done0.show()
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Plist0, 60, 208)
+ thisiscApp1.iscWindow12Plist0.set_size_request(188, 73)
+ thisiscApp1.iscWindow12Plist0.show()
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Pname0, 38, 48)
+ thisiscApp1.iscWindow12Pname0.set_size_request(250, 25)
+ thisiscApp1.iscWindow12Pname0.show()
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Label0, 62, 20)
+ thisiscApp1.iscWindow12Label0.set_size_request(109, 20)
+ thisiscApp1.iscWindow12Label0.show()
+ thisiscApp1.iscWindow12Player1.show()
+ #iscWindow12Opened
+ #iscWindow12Done
+
+
+def iscWindow12Closed(self, other):
+ pass
+ iscAppQuit7()
+ #iscWindow12Closed
+
+
+def iscWindow12addPlayerClicked(self):
+ pass
+ iscGetTextField13()
+ #iscWindow12addPlayerClicked
+
+
+def iscWindow12doneClicked(self):
+ pass
+ iscCloseWindow16()
+ #iscWindow12doneClicked
+
+
+def iscGetTextField13():
+ thisiscApp1.iscVCurrentPlayer = thisiscApp1.iscWindow12Pname0.get_buffer().get_text(thisiscApp1.iscWindow12Pname0.get_buffer().get_start_iter(), thisiscApp1.iscWindow12Pname0.get_buffer().get_end_iter())
+ iscAddPlayer141()
+ #iscGetTextField13Done
+
+
+def iscAddPlayer141():
+ thisiscApp1.iscVPlayers_Group.add_player(thisiscApp1.iscVCurrentPlayer)
+ iscSetTextField6()
+ #iscAddPlayer141Done
+
+def iscSetTextField6():
+ thisiscApp1.iscWindow12Pname0.get_buffer().set_text(thisiscApp1.iscVempty_str)
+ iscplayerlist5()
+ #iscSetTextField6Done
+
+
+def iscSetTextField3():
+ thisiscApp1.iscWindow12Plist0.get_buffer().set_text(thisiscApp1.iscVtemp)
+ #iscSetTextField3Done
+
+
+def iscplayerlist5():
+ thisiscApp1.iscVtemp=thisiscApp1.iscVPlayers_Group.__repr__()
+ thisiscApp1.iscVNumberPlayers=len(thisiscApp1.iscVPlayers_Group.player_group)
+ iscSetTextField3()
+ #iscplayerlist5Done
 
 #EndOfFunctions
 
