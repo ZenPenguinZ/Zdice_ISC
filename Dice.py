@@ -931,6 +931,7 @@ def iscWindow12firstupChanged(self):
 
 def iscShufflePlayers250():
  thisiscApp1.iscVPlayers_Group.shuffle()
+ iscplayerlist352()
  #iscShufflePlayers250Done
 
 def iscSetTextField3():
@@ -961,22 +962,22 @@ def iscSetTextField6():
  #iscSetTextField6Done
 
 
-def iscplayerlist352():
- thisiscApp1.iscVtemp=thisiscApp1.iscVPlayers_Group.__repr__()
- thisiscApp1.iscVNumberPlayers=len(thisiscApp1.iscVPlayers_Group.group)
- iscSetTextField3()
- #iscplayerlist352Done
+def iscgetPname370():
+ thisiscApp1.iscVtemp = thisiscApp1.iscVCurrentPlayer.name
+ thisiscApp1.iscVhandBrains = thisiscApp1.iscVCurrentPlayer.brain_count
+ iscSetTextBox218()
+ #iscgetPname370Done
 
 def iscgetCurrentPlayer302():
  thisiscApp1.iscVCurrentPlayer=thisiscApp1.iscVPlayers_Group.group[thisiscApp1.iscVzero]
  iscgetPname370()
  #iscgetCurrentPlayer302Done
 
-def iscgetPname370():
- thisiscApp1.iscVtemp = thisiscApp1.iscVCurrentPlayer.name
- thisiscApp1.iscVhandBrains = thisiscApp1.iscVCurrentPlayer.brain_count
- iscSetTextBox218()
- #iscgetPname370Done
+def iscplayerlist352():
+ thisiscApp1.iscVtemp=thisiscApp1.iscVPlayers_Group.__repr__()
+ thisiscApp1.iscVNumberPlayers=len(thisiscApp1.iscVPlayers_Group.group)
+ iscSetTextField3()
+ #iscplayerlist352Done
 
 #EndOfFunctions
 
