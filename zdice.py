@@ -34,10 +34,16 @@ class Players_Group(object):
         for i in self.player_group:
             temp.append(i.name)
         return "\n".join(temp)
-    def add_player(self, name):
+    def add(self, name):
         self.player_group.append(Player(name))
-    def shuffle_players(self):
+    def shuffle(self):
         shuffle(self.player_group)
+	def next(self, current_player_index):
+		if len(self.player_group) >= current_player_index:
+			current_player_index = 0
+		else:
+			current_player_index += 1
+		return self.player_group[current_player_index]
 
 
 class Die(object):
