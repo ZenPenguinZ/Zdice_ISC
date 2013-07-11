@@ -24,26 +24,26 @@ class Player(object):
 
 class Players_Group(object):
     """Defines the group of players in a round robbin linked list"""
-    player_group = []
-    def __init__(self, player_group=None):
-        if player_group is None:
-            player_group = []
-            self.player_group = player_group
+    group = []
+    def __init__(self, group=None):
+        if group is None:
+            group = []
+            self.group = group
     def __repr__(self):
         temp = []
-        for i in self.player_group:
+        for i in self.group:
             temp.append(i.name)
         return "\n".join(temp)
     def add(self, name):
-        self.player_group.append(Player(name))
+        self.group.append(Player(name))
     def shuffle(self):
-        shuffle(self.player_group)
+        shuffle(self.group)
 	def next(self, current_player_index):
-		if len(self.player_group) >= current_player_index:
+		if len(self.group) >= current_player_index:
 			current_player_index = 0
 		else:
 			current_player_index += 1
-		return self.player_group[current_player_index]
+		return self.group[current_player_index]
 
 
 class Die(object):

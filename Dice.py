@@ -72,6 +72,9 @@ class iscApp1:
  iscWindow12Plist0 = gtk.TextView(buffer=None)
  iscWindow12Pname0 = gtk.TextView(buffer=None)
  iscWindow12Label0 =gtk.Label("Enter your name")
+ iscWindow12Shuffle2 = gtk.Button("Shuffle")
+ iscWindow12firstup4 = gtk.Entry()
+ iscWindow12Firstup5 =gtk.Label("First up")
 
  #EndOfGlobalVariables
 
@@ -661,11 +664,6 @@ def iscPortalDeparture25():
  #iscPortalDeparture25Done
 
 
-def iscPortalDeparture17():
- iscPortalDestination38()
- #iscPortalDeparture17Done
-
-
 def iscAppQuit7():
  thisiscApp1.destroy(None,None)
  #iscAppQuit7Done
@@ -835,39 +833,68 @@ def iscWindow11dialogChanged(self):
  #iscWindow11dialogChanged
 
 
+def iscPortalDeparture17():
+ iscPortalDestination38()
+ #iscPortalDeparture17Done
+
+
+def iscMessageBox143():
+ message = ""
+ dialog = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_INFO, gtk.BUTTONS_NONE, message)
+ dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
+ dialog.run()
+ #iscMessageBox143Open
+ dialog.destroy()
+ #iscMessageBox143Closed
+
 def iscWindow12():
  thisiscApp1.iscWindow12addPlayer0 = gtk.Button("Add")
  thisiscApp1.iscWindow12done0 = gtk.Button("Done")
  thisiscApp1.iscWindow12Plist0 = gtk.TextView(buffer=None)
  thisiscApp1.iscWindow12Pname0 = gtk.TextView(buffer=None)
  thisiscApp1.iscWindow12Label0 =gtk.Label("Enter your name")
+ thisiscApp1.iscWindow12Shuffle2 = gtk.Button("Shuffle")
+ thisiscApp1.iscWindow12firstup4 = gtk.Entry()
+ thisiscApp1.iscWindow12Firstup5 =gtk.Label("First up")
  thisiscApp1.iscWindow12Player1 = gtk.Window(gtk.WINDOW_TOPLEVEL)
  thisiscApp1.iscWindow12Player1Fixed = gtk.Fixed()
  thisiscApp1.iscWindow12Player1.set_title("Player entry")
- thisiscApp1.iscWindow12Player1.set_default_size(640, 480)
+ thisiscApp1.iscWindow12Player1.set_default_size(707, 471)
  thisiscApp1.iscWindow12Player1.add(thisiscApp1.iscWindow12Player1Fixed)
- thisiscApp1.iscWindow12Player1Fixed.width = 640
- thisiscApp1.iscWindow12Player1Fixed.height = 480
+ thisiscApp1.iscWindow12Player1Fixed.width = 707
+ thisiscApp1.iscWindow12Player1Fixed.height = 471
  thisiscApp1.iscWindow12Player1.connect("delete_event", iscWindow12Closed)
  thisiscApp1.iscWindow12Player1.set_resizable(False)
  thisiscApp1.iscWindow12Player1Fixed.show()
- thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12addPlayer0, 104, 129)
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12addPlayer0, 37, 84)
  thisiscApp1.iscWindow12addPlayer0.set_size_request(80, 26)
  thisiscApp1.iscWindow12addPlayer0.connect("clicked", iscWindow12addPlayerClicked)
  thisiscApp1.iscWindow12addPlayer0.show()
- thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12done0, 105, 171)
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12done0, 243, 247)
  thisiscApp1.iscWindow12done0.set_size_request(80, 26)
  thisiscApp1.iscWindow12done0.connect("clicked", iscWindow12doneClicked)
  thisiscApp1.iscWindow12done0.show()
- thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Plist0, 60, 208)
- thisiscApp1.iscWindow12Plist0.set_size_request(188, 73)
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Plist0, 14, 127)
+ thisiscApp1.iscWindow12Plist0.set_size_request(189, 147)
  thisiscApp1.iscWindow12Plist0.show()
  thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Pname0, 38, 48)
  thisiscApp1.iscWindow12Pname0.set_size_request(250, 25)
  thisiscApp1.iscWindow12Pname0.show()
- thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Label0, 62, 20)
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Label0, 42, 22)
  thisiscApp1.iscWindow12Label0.set_size_request(109, 20)
  thisiscApp1.iscWindow12Label0.show()
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Shuffle2, 243, 202)
+ thisiscApp1.iscWindow12Shuffle2.set_size_request(80, 26)
+ thisiscApp1.iscWindow12Shuffle2.connect("clicked", iscWindow12ShuffleClicked)
+ thisiscApp1.iscWindow12Shuffle2.show()
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12firstup4, 243, 164)
+ thisiscApp1.iscWindow12firstup4.set_text("")
+ thisiscApp1.iscWindow12firstup4.set_size_request(80, 22)
+ thisiscApp1.iscWindow12firstup4.connect("changed", iscWindow12firstupChanged)
+ thisiscApp1.iscWindow12firstup4.show()
+ thisiscApp1.iscWindow12Player1Fixed.put(thisiscApp1.iscWindow12Firstup5, 246, 133)
+ thisiscApp1.iscWindow12Firstup5.set_size_request(55, 18)
+ thisiscApp1.iscWindow12Firstup5.show()
  thisiscApp1.iscWindow12Player1.show()
  #iscWindow12Opened
  #iscWindow12Done
@@ -891,33 +918,65 @@ def iscWindow12doneClicked(self):
  #iscWindow12doneClicked
 
 
-def iscGetTextField13():
- thisiscApp1.iscVCurrentPlayer = thisiscApp1.iscWindow12Pname0.get_buffer().get_text(thisiscApp1.iscWindow12Pname0.get_buffer().get_start_iter(), thisiscApp1.iscWindow12Pname0.get_buffer().get_end_iter())
- iscAddPlayer141()
- #iscGetTextField13Done
+def iscWindow12ShuffleClicked(self):
+ pass
+ iscShufflePlayers250()
+ #iscWindow12ShuffleClicked
 
 
-def iscAddPlayer141():
- thisiscApp1.iscVPlayers_Group.add_player(thisiscApp1.iscVCurrentPlayer)
- iscSetTextField6()
- #iscAddPlayer141Done
+def iscWindow12firstupChanged(self):
+ pass
+ #iscWindow12firstupChanged
 
-def iscSetTextField6():
- thisiscApp1.iscWindow12Pname0.get_buffer().set_text(thisiscApp1.iscVempty_str)
- iscplayerlist5()
- #iscSetTextField6Done
 
+def iscShufflePlayers250():
+ thisiscApp1.iscVPlayers_Group.shuffle()
+ #iscShufflePlayers250Done
 
 def iscSetTextField3():
  thisiscApp1.iscWindow12Plist0.get_buffer().set_text(thisiscApp1.iscVtemp)
+ iscgetCurrentPlayer302()
  #iscSetTextField3Done
 
 
-def iscplayerlist5():
+def iscSetTextBox218():
+ thisiscApp1.iscWindow12firstup4.set_text(thisiscApp1.iscVtemp)
+ #iscSetTextBox218Done
+
+
+def iscGetTextField13():
+ thisiscApp1.iscVCurrentPlayer = thisiscApp1.iscWindow12Pname0.get_buffer().get_text(thisiscApp1.iscWindow12Pname0.get_buffer().get_start_iter(), thisiscApp1.iscWindow12Pname0.get_buffer().get_end_iter())
+ iscAddPlayer268()
+ #iscGetTextField13Done
+
+
+def iscAddPlayer268():
+ thisiscApp1.iscVPlayers_Group.add(thisiscApp1.iscVCurrentPlayer)
+ iscSetTextField6()
+ #iscAddPlayer268Done
+
+def iscSetTextField6():
+ thisiscApp1.iscWindow12Pname0.get_buffer().set_text(thisiscApp1.iscVempty_str)
+ iscplayerlist352()
+ #iscSetTextField6Done
+
+
+def iscplayerlist352():
  thisiscApp1.iscVtemp=thisiscApp1.iscVPlayers_Group.__repr__()
- thisiscApp1.iscVNumberPlayers=len(thisiscApp1.iscVPlayers_Group.player_group)
+ thisiscApp1.iscVNumberPlayers=len(thisiscApp1.iscVPlayers_Group.group)
  iscSetTextField3()
- #iscplayerlist5Done
+ #iscplayerlist352Done
+
+def iscgetCurrentPlayer302():
+ thisiscApp1.iscVCurrentPlayer=thisiscApp1.iscVPlayers_Group.group[thisiscApp1.iscVzero]
+ iscgetPname370()
+ #iscgetCurrentPlayer302Done
+
+def iscgetPname370():
+ thisiscApp1.iscVtemp = thisiscApp1.iscVCurrentPlayer.name
+ thisiscApp1.iscVhandBrains = thisiscApp1.iscVCurrentPlayer.brain_count
+ iscSetTextBox218()
+ #iscgetPname370Done
 
 #EndOfFunctions
 
