@@ -40,7 +40,6 @@ class Players_Group(object):
         shuffle(self.group)
     def next_player(self, current_player):
         index = self.group.index(current_player)
-        print "index = ",index
         index = self.group[(index +1) % len(self.group)]
         return index
 
