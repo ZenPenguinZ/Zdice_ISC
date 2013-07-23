@@ -11,8 +11,8 @@ class Player(object):
         self.name = name
         self.brain_count = brain_count
     def __repr__(self):
-        logging.warning("player.__repr__" + str(len(self.name)))
-        return "test" #self.name
+        #logging.warning("player.__repr__" + str(len(self.name)))
+        return "%s \thas %d brains banked" % (self.name, self.brain_count)
     def has_won(self):
         if self.brain_count >= self.WINNING_BRAIN_COUNT:
             return True
@@ -32,24 +32,22 @@ class Players_Group(object):
     def __repr__(self):
         temp = []
         for i in self.group:
-            temp.append(i.name)
+            temp.append(str(i))
         return "\n".join(temp)
     def add(self, name):
         self.group.append(Player(name))
     def shuffle(self):
         shuffle(self.group)
-	def next(self, current_player_index):
-		if len(self.group) >= current_player_index:
-			current_player_index = 0
-		else:
-			current_player_index += 1
-		return self.group[current_player_index]
-
+    def next_player(self, current_player):
+        index = self.group.index(current_player)
+        print "index = ",index
+        index = self.group[(index +1) % len(self.group)]
+        return index
 
 class Die(object):
     """takes a color attr and defines a die
-	color is on of "green" "yellow" "red" 
-	Die.side is a tuple of NUMBER_SIDES length made up of action 'words', "brains" "shot" "run"
+	color is on of 'green' 'yellow' 'red' 
+	Die.side is a tuple of NUMBER_SIDES length made up of action 'words', 'brains' 'shot' 'run'
 	Die.roll_die randomizes the Die.side_up number
 	bool methods for is_color and is_action"""
 
